@@ -1,9 +1,26 @@
 import { useEffect, useState } from 'react';
-import { Container, Typography, Card, CardContent, Grid } from '@mui/material';
+import { styled } from '@mui/system';
+import { Container, Typography, Card, CardContent, Grid, CardActions, Button} from '@mui/material';
+
+// Define custom styles using styled
+const CustomCard = styled(Card)(({ theme }) => ({
+  backgroundColor: '#000000', // Set a background color
+  borderRadius: theme.spacing(2), // Add some border radius
+  boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.1)', // Add a subtle shadow
+}));
+
+const DeanIdTypography = styled(Typography)(({ theme }) => ({
+  color: '#ff4081', // Change the text color
+  fontWeight: 'bold', // Apply a bold font weight
+}));
+
 
 function Dashboard({ token }) {
   const [sessions, setSessions] = useState([]);
-
+  const handleBooking = (sessionId) => {
+    // Handle booking logic for the given session ID
+    console.log(`Booking session ID: ${sessionId}`);
+  };
   useEffect(() => {
     const fetchSessions = async () => {
       try {
@@ -34,25 +51,30 @@ function Dashboard({ token }) {
       <Grid container spacing={2}>
         {sessions.map(session => (
           <Grid item key={session.id} xs={12} sm={6} md={4}>
-            <Card>
+            <CustomCard>
               <CardContent>
-                <Typography variant="h6" gutterBottom>
-                  Session ID: {session.id}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
+                <DeanIdTypography variant="h6" gutterBottom>
+                  Dean ID: {session.deanId}
+                </DeanIdTypography>
+                <DeanIdTypography variant="body2" color="textSecondary">
                   Start Time: {session.startTime}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
+                </DeanIdTypography>
+                <DeanIdTypography variant="body2" color="textSecondary">
                   End Time: {session.endTime}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
+                </DeanIdTypography>
+                <DeanIdTypography variant="body2" color="textSecondary">
                   Available: {session.available ? 'Yes' : 'No'}
-                </Typography>
-                <Typography variant="body2" color="textSecondary">
+                </DeanIdTypography>
+                <DeanIdTypography variant="body2" color="textSecondary">
                   Booked By: {session.bookedBy || 'N/A'}
-                </Typography>
+                </DeanIdTypography>
               </CardContent>
-            </Card>
+              <CardActions>
+                <Button size="small" color="primary" onClick={() => handleBooking(session.id)}>
+                  Book Now
+                </Button>
+              </CardActions>
+            </CustomCard>
           </Grid>
         ))}
       </Grid>
