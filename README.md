@@ -7,4 +7,5 @@ Developed  slot/meeting booking based on availability in React.
 
 2. localhost:3000/dashboard
 
-![image](https://github.com/Abhijeetmishr/ratham-frontend/assets/43075376/4a9be385-095a-4748-a0d0-4edc65f638c2)
+![image](https://github.com/Abhijeetmishr/ratham-frontend/assets/43075376/00825a07-5eb8-4d1e-9f54-9ec99b1f8290)
+
